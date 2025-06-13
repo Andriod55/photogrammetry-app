@@ -1,5 +1,25 @@
 const form = document.getElementById('upload');
 const output = document.getElementById('output');
+const viewer = document.getElementById('viewer');
+
+const THREE = require('three');
+const { PLYLoader } = require('three/examples/jsm/loaders/PLYLoader.js');
+let scene, camera, renderer;
+
+function initThree() {
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(75, viewer.clientWidth / viewer.clientHeight, 0.1, 1000);
+  renderer = new THREE.WebGLRenderer();
+  renderer.setSize(viewer.clientWidth, viewer.clientHeight);
+  viewer.appendChild(renderer.domElement);
+  camera.position.z = 2;
+  animate();
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+  renderer.render(scene, camera);
+}
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -21,4 +41,12 @@ form.addEventListener('submit', async (e) => {
   });
   const json = await res.json();
   output.innerText = JSON.stringify(json, null, 2);
+
+  const loader = new PLYLoader();
+  loader.load(`http://localhost:5000/workspace/${file.name}/gsplat/point_cloud.ply`, ply => {
+    ply.computeVertexNormals();
+    scene.add(new THREE.Mesh(ply, new THREE.MeshStandardMaterial({ color: 0xcccccc })));
+  });
 });
+
+initThree();

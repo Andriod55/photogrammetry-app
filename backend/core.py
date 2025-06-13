@@ -43,7 +43,17 @@ def equirectangular_to_cubemap(pano_path: str, out_dir: str) -> list[Path]:
 
 
 def run_colmap(img_dir: str, workspace_dir: str, quality: str = "medium") -> None:
-    """Run COLMAP's automatic reconstructor on a directory of images."""
+    """Run COLMAP's automatic reconstructor on a directory of images.
+
+    Parameters
+    ----------
+    img_dir:
+        Directory containing cubemap face images.
+    workspace_dir:
+        Output directory for COLMAP's reconstruction.
+    quality:
+        Reconstruction quality preset.  "low", "medium" or "high".
+    """
     subprocess.run(
         [
             "colmap",
