@@ -1,0 +1,12 @@
+{
+  "name": "photogrammetry-app",
+  "version": "1.0.0",
+  "description": "Cross-platform 360° photogrammetry app using Electron and Python",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^25.0.0"
+  }
+}
