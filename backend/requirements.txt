@@ -1,0 +1,7 @@
+py360convert
+opencv-python
+flask
+gsplat
+zerorpc
+torch
+torchvision
