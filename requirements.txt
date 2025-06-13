@@ -1,0 +1,7 @@
+# File: photogrammetry-app/backend/requirements.txt
+
+Pillow>=9.0.0
+py360convert>=0.1.0
+numpy>=1.20.0
+# Uncomment the next line if you have gsplat available via pip:
+# gsplat>=0.1.0
